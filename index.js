@@ -28,12 +28,25 @@ const generateNumberOfInputs = () => {
 // function to push names to the array
 
 const submitNames = () => {
+  //Get the input fields nodes
   const inputNamesList = document.querySelectorAll("#input-list input")
 
+  // For every input field push the value of the fieds to the Name Pool Array
   for (let i = 0; i < inputNamesList.length; i++) {
     const inputName = inputNamesList[i]
     namePool.push(inputName.value)
-    console.log(namePool)
+  }
+
+  //get The row inside the name-pool div
+  const row = document.querySelector("#name-pool div")
+
+  //for every name create a node to append to this row
+  for (let i = 0; i < namePool.length; i++) {
+    const name = namePool[i]
+    const nameDiv = document.createElement("div")
+    nameDiv.classList.add("col-6", "col-md-4", "col-lg-3", "border")
+    nameDiv.innerText = `${name}`
+    row.appendChild(nameDiv)
   }
 }
 
