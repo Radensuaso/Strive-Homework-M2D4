@@ -48,6 +48,22 @@ const submitNames = () => {
     nameDiv.innerText = `${name}`
     row.appendChild(nameDiv)
   }
+
+  //Show pool list
+  const namePoolContainer = document.querySelector("#name-pool")
+  namePoolContainer.style.display = "block"
+}
+
+//function to randomize people for each group
+
+const groups = {}
+
+const randomize = () => {
+  //Initialize an array with the length of the namePool array so we can take a random index
+  const randomIndexArray = []
+  for (let i = 0; i < namePool.length; i++) {
+    randomIndexArray.push(i)
+  }
 }
 
 //window on load
