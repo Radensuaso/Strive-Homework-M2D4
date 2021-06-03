@@ -95,7 +95,7 @@
       <div id="form-section">
         <h2 class="my-3 mx-0">Add names to the pool</h2>
 
-        <form id="generate-number" class="row">
+        <div id="generate-number" class="row">
           <div class="input-group mb-3 col-12">
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default"
@@ -113,28 +113,20 @@
           <div class="col-2">
             <button type="button" class="btn btn-primary">Generate</button>
           </div>
-        </form>
+        </div>
 
-        <form id="input-list" class="row">
-          <div class="col-2 my-3">
-            <button type="button" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+        <div id="input-list" class="row"></div>
       </div>
-      <hr />
+
       <div id="name-pool">
         <h2 class="my-3 mx-0">Name pool</h2>
-        <div class="row">
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="btn btn-primary">Randomize</button>
-          </div>
-        </div>
+        <div class="row"></div>
       </div>
-      <hr />
 
       <div id="groups"></div>
     </div>
 
+    <script src="index.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -145,6 +137,5 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    <script src="index.js"></script>
   </body>
 </html>
