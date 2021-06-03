@@ -24,3 +24,27 @@ const generateNumberOfInputs = () => {
   inputListForm.style.display = "block"
   document.querySelector("#generate-number").style.display = "none"
 }
+
+// function to push names to the array
+
+const submitNames = () => {
+  const inputNamesList = document.querySelectorAll("#input-list input")
+
+  for (let i = 0; i < inputNamesList.length; i++) {
+    const inputName = inputNamesList[i]
+    namePool.push(inputName.value)
+    console.log(namePool)
+  }
+}
+
+//window on load
+
+window.onload = () => {
+  //generate Button
+  const generateButton = document.querySelector("#generate-number button")
+  generateButton.addEventListener("click", generateNumberOfInputs)
+
+  //Submit Button
+  const submitButton = document.querySelector("#input-list button")
+  submitButton.addEventListener("click", submitNames)
+}
