@@ -59,20 +59,32 @@ const submitNames = () => {
   for (let i = 0; i < namePool.length; i++) {
     const name = namePool[i]
     const nameDiv = document.createElement("div")
-    nameDiv.classList.add(
-      "col-12",
-      "col-sm-6",
-      "col-md-4",
-      "col-lg-3",
-      "py-2",
-      "border"
-    )
+    nameDiv.classList.add("col-12", "col-md-4", "col-lg-3", "py-2", "border")
     nameDiv.innerText = `${name}`
     row.appendChild(nameDiv)
   }
 
+  // create and append the input for how many teams
+  const howManyTeams = document.createElement("div")
+  howManyTeams.classList.add(
+    "col-12",
+    "col-md-4",
+    "pt-2",
+    "input-group-prepend"
+  )
+  howManyTeams.innerHTML = `
+  <input
+    placeholder="How Many Teams?"
+    type="number"
+    class="form-control"
+    aria-label="Sizing example input"
+    aria-describedby="inputGroup-sizing-default"
+  />`
+
+  row.appendChild(howManyTeams)
   //create and append randomize button
   const randomizeButton = document.createElement("div")
+
   randomizeButton.classList.add(
     "col-12",
     "col-sm-6",
