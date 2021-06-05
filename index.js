@@ -40,7 +40,7 @@ const generateNumberOfInputs = () => {
   submitButton.addEventListener("click", submitNames)
 }
 
-// function to push names to the array
+// function to push names to the array and display them in the page
 
 const submitNames = () => {
   //Get the input fields nodes
@@ -54,7 +54,6 @@ const submitNames = () => {
 
   //get The row inside the name-pool div
   const row = document.querySelector("#name-pool div")
-  console.log(row)
   //for every name create a node to append to this row
   for (let i = 0; i < namePool.length; i++) {
     const name = namePool[i]
@@ -112,6 +111,28 @@ const randomize = () => {
   const randomIndexArray = []
   for (let i = 0; i < namePool.length; i++) {
     randomIndexArray.push(i)
+  }
+
+  randomIndexArray.sort(function () {
+    return 0.5 - Math.random()
+  })
+
+  //Get value of how many teams input
+  const howManyTeamsValue = document.querySelector("#name-pool input").value
+
+  //get row inside the groups div
+  const groupsRow = document.querySelector("#groups .row")
+
+  //divide name pool for teams
+  if (namePool.length % howManyTeamsValue === 0) {
+    for (let i = 0; i < howManyTeamsValue; i++) {
+      const groupColumn = document.createElement("div")
+      groupColumn.classList.add("col-12", "col-md-4", "col-lg-3")
+      groupColumn.innerHTML = `<h3>Group ${i + 1}<h3>`
+      groupsRow.appendChild(groupColumn)
+
+      for (let j = 0; j < namePool.length / howManyTeamsValue; j++) {}
+    }
   }
 }
 
