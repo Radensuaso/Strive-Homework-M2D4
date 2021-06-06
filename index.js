@@ -58,7 +58,7 @@ const submitNames = () => {
   for (let i = 0; i < namePool.length; i++) {
     const name = namePool[i]
     const nameDiv = document.createElement("div")
-    nameDiv.classList.add("col-12", "col-md-4", "col-lg-3", "py-2", "border")
+    nameDiv.classList.add("col-12", "col-md-4", "col-lg-3", "py-2", "names")
     nameDiv.innerText = `${name}`
     row.appendChild(nameDiv)
   }
@@ -91,10 +91,10 @@ const submitNames = () => {
     "col-lg-3",
     "pt-2"
   )
-  randomizeButton.innerHTML = `<button type="button" class="btn btn-primary">Randomize</button>`
+  randomizeButton.innerHTML = `<button type="button" class="btn btn-primary">Assign</button>`
   row.appendChild(randomizeButton)
   //add event listener to randomize button
-  randomizeButton.addEventListener("click", randomize)
+  randomizeButton.addEventListener("click", assign)
 
   //Show pool list and hide form section
   const namePoolContainer = document.querySelector("#name-pool")
@@ -104,9 +104,7 @@ const submitNames = () => {
 
 //function to randomize people for each group
 
-const groups = {}
-
-const randomize = () => {
+const assign = () => {
   //Initialize an array with the length of the namePool array so we can take a random index
   const randomIndexArray = []
   for (let i = 0; i < namePool.length; i++) {
@@ -120,18 +118,35 @@ const randomize = () => {
   //Get value of how many teams input
   const howManyTeamsValue = document.querySelector("#name-pool input").value
 
-  //get row inside the groups div
-  const groupsRow = document.querySelector("#groups .row")
+  //get row inside the teams div
+  const teamsRow = document.querySelector("#teams .row")
+
+  //get array names row
+  const namePoolNodesArray = document.querySelectorAll("#name-pool .row .names")
+
+  //In case the groups aren't divided evenly we will use this variable
+  let personsLeft = namePool.length % howManyTeamsValue
 
   //divide name pool for teams
-  if (namePool.length % howManyTeamsValue === 0) {
-    for (let i = 0; i < howManyTeamsValue; i++) {
-      const groupColumn = document.createElement("div")
-      groupColumn.classList.add("col-12", "col-md-4", "col-lg-3")
-      groupColumn.innerHTML = `<h3>Group ${i + 1}<h3>`
-      groupsRow.appendChild(groupColumn)
 
-      for (let j = 0; j < namePool.length / howManyTeamsValue; j++) {}
+  for (let i = 0; i < howManyTeamsValue; i++) {
+    const teamColumn = document.createElement("div")
+    teamColumn.classList.add("col-12", "col-md-4", "col-lg-3")
+    teamColumn.innerHTML = `<h3>Team ${i + 1}<h3>`
+    teamsRow.appendChild(teamColumn) // for each team create and append a column to the teamsRow
+
+    const teamSize = Math.floor(namePool.length / howManyTeamsValue) // here is the team size floored to give integer
+
+    for (let j = 0; j < teamSize; j++) {
+      teamColumn.appendChild(namePoolNodesArray[randomIndexArray[0]]) // with this we'll grab the first number of the randomIndexArray
+      randomIndexArray.splice(0, 1) //and eliminate it from the array so it doesn't repeat
+    }
+
+    if (personsLeft > 0) {
+      // if the number of persons left is greater than zero we append another name to the current div with the same method we used above
+      teamColumn.appendChild(namePoolNodesArray[randomIndexArray[0]])
+      randomIndexArray.splice(0, 1)
+      personsLeft-- //then we reduce the value of the persons left by one
     }
   }
 }
